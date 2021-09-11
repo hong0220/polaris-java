@@ -58,6 +58,8 @@
         <module>polaris-test</module>
         <module>polaris-router</module>
         <module>polaris-distribution</module>
+
+        <module>polaris-demo</module>
     </modules>
     <modelVersion>4.0.0</modelVersion>
 
