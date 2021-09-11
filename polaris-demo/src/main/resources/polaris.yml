@@ -1,4 +1,11 @@
 global:
+  system:
+    # 禁止二次寻址
+    discoverCluster:
+      sameAsBuiltin: true
+    healthCheckCluster:
+      sameAsBuiltin: true
+
   serverConnector:
     addresses:
       - 127.0.0.1:8091
