@@ -1,0 +1,58 @@
+[
+  {
+    "namespace": "default",
+    "service": "test_service",
+    "inbounds": [
+      {
+        "sources": [
+          {
+            "service": "*",
+            "namespace": "*",
+            "metadata": {
+              "grey": {
+                "value": "true"
+              }
+            }
+          }
+        ],
+        "destinations": [
+          {
+            "namespace": "default",
+            "service": "test_service",
+            "metadata": {
+              "version": {
+                "value": "2.0"
+              }
+            },
+            "priority": 0,
+            "weight": 100,
+            "isolate": false
+          }
+        ]
+      },
+      {
+        "sources": [
+          {
+            "service": "*",
+            "namespace": "*"
+          }
+        ],
+        "destinations": [
+          {
+            "namespace": "default",
+            "service": "test_service",
+            "metadata": {
+              "version": {
+                "value": "1.0"
+              }
+            },
+            "priority": 0,
+            "weight": 100,
+            "isolate": false
+          }
+        ]
+      }
+    ],
+    "outbounds": []
+  }
+]

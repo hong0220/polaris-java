@@ -1,0 +1,38 @@
+[
+  {
+    "namespace": "default",
+    "service": "test_service",
+    "resource": "QPS",
+    "type": "LOCAL",
+    "labels": {
+      "method": {
+        "type": "EXACT",
+        "value": "/path1"
+      }
+    },
+    "amounts": [
+      {
+        "maxAmount": 100,
+        "validDuration": "1s"
+      }
+    ]
+  },
+  {
+    "namespace": "default",
+    "service": "test_service",
+    "resource": "QPS",
+    "type": "LOCAL",
+    "labels": {
+      "method": {
+        "type": "EXACT",
+        "value": "/path2"
+      }
+    },
+    "amounts": [
+      {
+        "maxAmount": 300,
+        "validDuration": "1s"
+      }
+    ]
+  }
+]

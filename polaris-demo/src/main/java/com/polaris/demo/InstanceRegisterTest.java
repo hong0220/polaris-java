@@ -10,34 +10,37 @@ import com.tencent.polaris.factory.api.DiscoveryAPIFactory;
 public class InstanceRegisterTest {
 
     public static void main(String[] args) throws InterruptedException {
-        // 服务注册
-        InstanceRegisterRequest instanceRegisterRequest = new InstanceRegisterRequest();
-        instanceRegisterRequest.setNamespace("Test");
-        instanceRegisterRequest.setService("dummy");
-        instanceRegisterRequest.setHost("127.0.0.1");
-        instanceRegisterRequest.setPort(12380);
-        instanceRegisterRequest.setTtl(2);
-
         ProviderAPI providerAPI = DiscoveryAPIFactory.createProviderAPI();
-        InstanceRegisterResponse instanceRegisterResponse = providerAPI.register(instanceRegisterRequest);
+
+        // 服务注册
+        InstanceRegisterRequest register = new InstanceRegisterRequest();
+        register.setNamespace("default");
+        register.setService("test_service");
+        register.setHost("127.0.0.1");
+        register.setPort(12380);
+        register.setTtl(2);
+        InstanceRegisterResponse instanceRegisterResponse = providerAPI.register(register);
+        System.out.println("返回结果:" + instanceRegisterResponse.getInstanceId());
 
         // 心跳上报
-        InstanceHeartbeatRequest instanceHeartbeatRequest = new InstanceHeartbeatRequest();
-        instanceHeartbeatRequest.setNamespace("Test");
-        instanceHeartbeatRequest.setService("dummy");
-        instanceHeartbeatRequest.setHost("127.0.0.1");
-        instanceHeartbeatRequest.setPort(12380);
-        providerAPI.heartbeat(instanceHeartbeatRequest);
+        for (int i = 0; i < 100; ++i) {
+            InstanceHeartbeatRequest heartbeat = new InstanceHeartbeatRequest();
+            heartbeat.setNamespace("default");
+            heartbeat.setService("test_service");
+            heartbeat.setHost("127.0.0.1");
+            heartbeat.setPort(12380);
+            providerAPI.heartbeat(heartbeat);
+
+            Thread.sleep(1000);
+        }
 
         // 服务反注册
-//        InstanceDeregisterRequest request = new InstanceDeregisterRequest();
-//        request.setNamespace("Test");
-//        request.setService("dummy");
-//        request.setHost("127.0.0.1");
-//        request.setPort(12380);
-//        providerAPI.deRegister(request);
-
-        InstanceRegisterTest.class.wait();
+        InstanceDeregisterRequest deRegister = new InstanceDeregisterRequest();
+        deRegister.setNamespace("default");
+        deRegister.setService("test_service");
+        deRegister.setHost("127.0.0.1");
+        deRegister.setPort(12380);
+        providerAPI.deRegister(deRegister);
 
         providerAPI.destroy();
     }
