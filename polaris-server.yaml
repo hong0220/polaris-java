@@ -116,8 +116,8 @@ store:
     master:
       dbType: mysql
       dbUser: root
-      dbPwd: rootmysql
-      dbAddr: 127.0.0.1:3306
+      dbPwd: sg2ggmv9lorEktNd
+      dbAddr: l-tcdb1.tc.beta.cn0.qunar.com:3306
       dbName: polaris_server
       maxOpenConns: -1
       maxIdleConns: -1
