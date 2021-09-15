@@ -60,6 +60,7 @@
         <module>polaris-distribution</module>
 
         <module>polaris-demo</module>
+        <module>tencent-cloud</module>
     </modules>
     <modelVersion>4.0.0</modelVersion>
 

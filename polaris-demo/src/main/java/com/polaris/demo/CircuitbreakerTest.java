@@ -34,7 +34,7 @@ public class CircuitbreakerTest {
             serviceCallResult.setNamespace("default");
             serviceCallResult.setService("test_service");
             serviceCallResult.setHost("127.0.0.1");
-            serviceCallResult.setPort(10011);
+            serviceCallResult.setPort(10010);
             serviceCallResult.setRetStatus(RetStatus.RetFail);
             serviceCallResult.setRetCode(500);
             serviceCallResult.setDelay(1000);

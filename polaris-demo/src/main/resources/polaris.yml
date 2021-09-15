@@ -8,4 +8,4 @@ global:
 
   serverConnector:
     addresses:
-      - l-agentapigateway1.tc.dev.cn0:8091
+      - 127.0.0.1:8091

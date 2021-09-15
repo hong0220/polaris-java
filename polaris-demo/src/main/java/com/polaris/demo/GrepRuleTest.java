@@ -48,16 +48,22 @@ public class GrepRuleTest {
             InstanceRegisterResponse instanceRegisterResponse = providerAPI.register(request);
         }
 
+        test1();
+        test2();
+    }
+
+    public static void test1() {
         // 拉取经过路由和负载均衡后的单个实例
         ConsumerAPI consumerAPI = DiscoveryAPIFactory.createConsumerAPI();
         GetOneInstanceRequest request = new GetOneInstanceRequest();
 
-        ServiceInfo serviceInfo = new ServiceInfo();
         Map<String, String> metadata = new HashMap<String, String>();
-        metadata.put("grep", "true");
-        serviceInfo.setMetadata(metadata);
-        request.setServiceInfo(serviceInfo);
+        metadata.put("grey", "true");
 
+        ServiceInfo serviceInfo = new ServiceInfo();
+        serviceInfo.setMetadata(metadata);
+
+        request.setServiceInfo(serviceInfo);
         request.setNamespace("default");
         request.setService("test_service");
 
@@ -70,18 +76,20 @@ public class GrepRuleTest {
         consumerAPI.destroy();
     }
 
-    public static void test() {
+    public static void test2() {
         // 拉取经过路由和负载均衡后的多个实例
         ConsumerAPI consumerAPI = DiscoveryAPIFactory.createConsumerAPI();
         GetInstancesRequest request = new GetInstancesRequest();
 
-        // todo bug
-//        ServiceInfo serviceInfo = new ServiceInfo();
-//        Map<String, String> metadata = new HashMap<String, String>();
-//        metadata.put("grep", "true");
-//        serviceInfo.setMetadata(metadata);
-//        request.setServiceInfo(serviceInfo);
+        Map<String, String> metadata = new HashMap<String, String>();
+        metadata.put("grey", "true");
 
+        ServiceInfo serviceInfo = new ServiceInfo();
+        serviceInfo.setMetadata(metadata);
+        serviceInfo.setNamespace("default");
+        serviceInfo.setService("test_service");
+
+        request.setServiceInfo(serviceInfo);
         request.setNamespace("default");
         request.setService("test_service");
 
