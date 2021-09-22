@@ -11,6 +11,7 @@
 
   <modules>
     <module>discovery-caller-service</module>
+    <module>polaris-circuitbreaker-example</module>
     <module>ratelimit-callee-service</module>
   </modules>
 

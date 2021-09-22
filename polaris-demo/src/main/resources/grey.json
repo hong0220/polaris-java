@@ -27,6 +27,18 @@
             "priority": 0,
             "weight": 100,
             "isolate": false
+          },
+          {
+            "namespace": "default",
+            "service": "test_service",
+            "metadata": {
+              "version": {
+                "value": "3.0"
+              }
+            },
+            "priority": 0,
+            "weight": 100,
+            "isolate": false
           }
         ]
       },

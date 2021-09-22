@@ -1,0 +1,172 @@
+#描述:全局配置项
+global:
+  #描述系统相关配置
+  system:
+    #描述:SDK运行模式
+    #类型:enum
+    #范围:0（直连模式，SDK直接对接server）; 1（代理模式，SDK只对接agent, 通过agent进行server的对接）
+    #默认值:0
+    mode: 0
+    #服务发现集群
+    discoverCluster:
+      namespace: default
+      sameAsBuiltin: true
+    healthCheckCluster:
+      sameAsBuiltin: true
+  api:
+    #描述:api超时时间
+    #类型:string
+    #格式：^\d+(ms|s|m|h)$
+    #范围:[1ms:...]
+    #默认值:1s
+    timeout: 5s
+    #描述:上报间隔
+    #类型:string
+    #格式:^\d+(ms|s|m|h)$
+    #范围:[1ms:...]
+    #默认值:10m
+    reportInterval: 10m
+    #描述:API因为网络原因调用失败后的重试次数
+    #类型:int
+    #范围:[0:...]
+    #默认值:5
+    maxRetryTimes: 5
+    #描述:重试间隔
+    #类型:string
+    #格式:^\d+(ms|s|m|h)$
+    #范围:[1s:...]
+    #默认值:1s
+    retryInterval: 1s
+  #描述:对接polaris server的相关配置
+  serverConnector:
+    #描述:访问server的连接协议，SDK会根据协议名称会加载对应的插件
+    #类型:string
+    #范围:已注册的连接器插件名
+    #默认值:grpc
+    protocol: grpc
+    #描述:发起连接后的连接超时时间
+    #类型:string
+    #格式:^\d+(ms|s|m|h)$
+    #范围:[1ms:...]
+    #默认值:200ms
+    connectTimeout: 500ms
+    #描述:远程请求超时时间
+    #类型:string
+    #格式:^\d+(ms|s|m|h)$
+    #范围:[1ms:...]
+    #默认值:1s
+    messageTimeout: 5s
+    #描述:连接空闲时间，长连接模式下，当连接空闲超过一定时间后，SDK会主动释放连接
+    #类型:string
+    #格式:^\d+(ms|s|m|h)$
+    #范围:[1ms:...]
+    #默认值:1s
+    connectionIdleTimeout: 1s
+    #描述:首次请求的任务队列长度，当用户发起首次服务访问请求时，SDK会对任务进行队列调度并连接server，当积压的任务数超过队列长度后，SDK会直接拒绝首次请求的发起。
+    #类型:int
+    #范围:[0:...]
+    #默认值:1000
+    requestQueueSize: 1000
+    #描述:server节点的切换周期，为了使得server的压力能够均衡，SDK会定期针对最新的节点列表进行重新计算自己当前应该连接的节点，假如和当前不一致，则进行切换
+    #类型:string
+    #格式:^\d+(ms|s|m|h)$
+    #范围:[1m:...]
+    #默认值:10m
+    serverSwitchInterval: 10m
+    plugin:
+      grpc:
+        #描述:GRPC客户端单次最大链路接收报文
+        #类型:int
+        #范围:(0:524288000]
+        maxCallRecvMsgSize: 52428800
+
+#描述:主调端配置
+consumer:
+  #描述:节点熔断相关配置
+  circuitBreaker:
+    #描述:是否启用节点熔断功能
+    #类型:bool
+    #默认值:true
+    enable: true
+    #描述:实例定时熔断检测周期
+    #类型:string
+    #格式:^\d+(ms|s|m|h)$
+    #范围:[100ms:...]
+    #默认值:30s
+    checkPeriod: 100ms
+    #描述:熔断器半开后最大允许的请求数
+    #类型:int
+    #范围:[3:...]
+    #默认值:10
+    requestCountAfterHalfOpen: 10
+    #描述:熔断器打开后，多久后转换为半开状态
+    #类型:string
+    #格式:^\d+(ms|s|m|h)$
+    #范围:[1s:...]
+    #默认值:30s
+    sleepWindow: 60s
+    #描述:熔断器半开到关闭所必须的最少成功请求数
+    #类型:int
+    #范围:[1:requestCountAfterHalfOpen]
+    #默认值:8
+    successCountAfterHalfOpen: 8
+    #描述:熔断器半开到关闭的统计周期
+    #类型:string
+    #范围:[10s:...]
+    #默认值:60s
+    recoverWindow: 60s
+    #描述:熔断器半开到关闭的统计滑桶数
+    #类型:int
+    #范围:[1:...]
+    #默认值:10
+    recoverNumBuckets: 10
+    #描述:熔断策略，SDK会根据策略名称加载对应的熔断器插件
+    #类型:list
+    #范围:已注册的熔断器插件名
+    #默认值：基于周期连续错误数熔断（errorCount）、以及基于周期错误率的熔断策略（errorRate）
+    chain:
+      - errorCount
+      - errorRate
+    #描述:熔断插件配置
+    plugin:
+      #描述:基于周期连续错误数熔断策略配置
+      errorCount:
+        #描述:触发连续错误熔断的阈值
+        #类型:int
+        #范围:[1:...]
+        #默认值:10
+        continuousErrorThreshold: 1
+        #描述:连续错误数的最小统计单元数量
+        #类型:int
+        #范围:[1:...]
+        #默认值:10
+        metricNumBuckets: 1
+        #描述:连续失败的统计周期
+        #类型:string
+        #格式:^\d+(ms|s|m|h)$
+        #范围:[10ms:...]
+        #默认值:1m
+        metricStatTimeWindow: 100ms
+      #描述:基于周期错误率的熔断策略配置
+      errorRate:
+        #描述:触发错误率熔断的阈值
+        #类型:double
+        #范围:(0:1]
+        #默认值:0.5
+        errorRateThreshold: 1
+        #描述:错误率熔断的最小统计单元数量
+        #类型:int
+        #范围:[1:...]
+        #默认值:5
+        metricNumBuckets: 5
+        #描述:错误率熔断的统计周期
+        #类型:string
+        #格式:^\d+(ms|s|m|h)$
+        #范围:[1s:...]
+        #默认值:1m
+        metricStatTimeWindow: 1s
+        #描述:触发错误率熔断的最低请求阈值
+        #类型:int
+        #范围:(0:...]
+        #默认值:10
+        requestVolumeThreshold: 1

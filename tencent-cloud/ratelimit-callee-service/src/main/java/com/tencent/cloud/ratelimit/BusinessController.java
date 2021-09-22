@@ -44,7 +44,11 @@ public class BusinessController {
                 ResponseEntity<String> entity = restTemplate
                     .getForEntity("http://" + appName + "/business/info", String.class);
                 builder.append(entity.getBody()).append("<br/>");
+
+                System.out.println("返回结果:" + entity.getBody());
             } catch (RestClientException e) {
+                System.out.println("异常了");
+
                 if (e instanceof TooManyRequests) {
                     builder.append(((TooManyRequests) e).getResponseBodyAsString()).append(index.incrementAndGet())
                         .append("<br/>");
