@@ -2,82 +2,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <parent>
-    <artifactId>spring-cloud-tencent</artifactId>
-    <groupId>com.tencent.cloud</groupId>
-    <version>1.1.1.Hoxton.SR9</version>
-  </parent>
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.tencent.polaris</groupId>
   <artifactId>tencent-cloud</artifactId>
   <version>1.1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>discovery-caller-service</module>
+    <module>ratelimit-callee-service</module>
+  </modules>
 
   <properties>
     <spring-boot.version>2.3.10.RELEASE</spring-boot.version>
     <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
-
     <spring-cloud-tencent.version>1.1.1.Hoxton.SR9</spring-cloud-tencent.version>
   </properties>
-
-  <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-
-    <!-- 服务注册与发现 -->
-    <dependency>
-      <artifactId>spring-cloud-starter-tencent-polaris-discovery</artifactId>
-      <groupId>com.tencent.cloud</groupId>
-    </dependency>
-    <!--    &lt;!&ndash; 服务路由与负载均衡 &ndash;&gt;-->
-    <!--    <dependency>-->
-    <!--      <groupId>com.tencent.cloud</groupId>-->
-    <!--      <artifactId>spring-cloud-starter-tencent-polaris-router</artifactId>-->
-    <!--    </dependency>-->
-    <!--    &lt;!&ndash; 服务限流 &ndash;&gt;-->
-    <!--    <dependency>-->
-    <!--      <groupId>com.tencent.cloud</groupId>-->
-    <!--      <artifactId>spring-cloud-starter-tencent-polaris-ratelimit</artifactId>-->
-    <!--    </dependency>-->
-
-    <!--熔断超时后，重试机制依赖-->
-    <dependency>
-      <groupId>org.springframework.retry</groupId>
-      <artifactId>spring-retry</artifactId>
-    </dependency>
-    <!--系统服务监控依赖-->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-actuator</artifactId>
-    </dependency>
-    <!--feign客户端依赖 -->
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-openfeign</artifactId>
-    </dependency>
-    <!--熔断依赖 -->
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-    </dependency>
-    <!--负载均衡依赖-->
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.netflix.ribbon</groupId>
-      <artifactId>ribbon-core</artifactId>
-    </dependency>
-  </dependencies>
 
   <dependencyManagement>
     <dependencies>
