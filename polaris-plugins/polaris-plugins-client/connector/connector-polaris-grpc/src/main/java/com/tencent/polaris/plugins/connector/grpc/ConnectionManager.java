@@ -101,6 +101,7 @@ public class ConnectionManager extends Destroyable {
         Collection<ServerServiceInfo> serverServices = initContext.getServerServices();
         ServerServiceInfo discoverService = null;
         ServerServiceInfo healthCheckService = null;
+
         if (CollectionUtils.isNotEmpty(serverServices)) {
             for (ServerServiceInfo serverService : serverServices) {
                 if (serverService.getClusterType() == ClusterType.SERVICE_DISCOVER_CLUSTER) {
@@ -128,6 +129,7 @@ public class ConnectionManager extends Destroyable {
                     .put(ClusterType.HEALTH_CHECK_CLUSTER,
                             new ServerAddressList(healthCheckService, ClusterType.HEALTH_CHECK_CLUSTER));
         }
+
         switchIntervalMs = serverConnectorConfig.getServerSwitchInterval();
         switchExecutorService = Executors
                 .newSingleThreadScheduledExecutor(new NamedThreadFactory("connection-manager"));

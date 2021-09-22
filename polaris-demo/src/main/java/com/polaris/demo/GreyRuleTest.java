@@ -18,9 +18,9 @@ import java.util.Map;
  * <p>
  * 2.添加路由规则 路由规则中声明，带有灰度标签(grey=true)的请求，路由到version 2.0的实例分组，否则路由到version 1.0的实例分组。
  * <p>
- * curl -XPOST -H'Content-Type:application/json' -d @grep.json 'http://127.0.0.1:8090/naming/v1/routings'
+ * curl -XPOST -H'Content-Type:application/json' -d @grey.json 'http://127.0.0.1:8090/naming/v1/routings'
  */
-public class GrepRuleTest {
+public class GreyRuleTest {
 
     public static void main(String[] args) {
         ProviderAPI providerAPI = DiscoveryAPIFactory.createProviderAPI();

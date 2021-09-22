@@ -34,13 +34,13 @@ public class InstanceRegisterTest {
             Thread.sleep(1000);
         }
 
-        // 服务反注册
-        InstanceDeregisterRequest deRegister = new InstanceDeregisterRequest();
-        deRegister.setNamespace("default");
-        deRegister.setService("test_service");
-        deRegister.setHost("127.0.0.1");
-        deRegister.setPort(12380);
-        providerAPI.deRegister(deRegister);
+//        // 服务反注册
+//        InstanceDeregisterRequest deRegister = new InstanceDeregisterRequest();
+//        deRegister.setNamespace("default");
+//        deRegister.setService("test_service");
+//        deRegister.setHost("127.0.0.1");
+//        deRegister.setPort(12380);
+//        providerAPI.deRegister(deRegister);
 
         providerAPI.destroy();
     }
