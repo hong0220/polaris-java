@@ -10,10 +10,6 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>polaris-discovery-example</module>
-    <module>polaris-circuitbreaker-example</module>
-    <module>polaris-gateway-example</module>
-    <module>ratelimit-callee-service</module>
   </modules>
 
   <properties>
