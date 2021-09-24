@@ -4,12 +4,12 @@ global:
       sameAsBuiltin: true
     healthCheckCluster:
       sameAsBuiltin: true
-#    #监控上报集群
-#    monitorCluster:
-#      namespace: Polaris
-#      service: polaris.monitor
+    #监控上报集群
+    monitorCluster:
+      namespace: Polaris
+      service: polaris.monitor
 #      #可选：服务刷新间隔
-#      refreshInterval: 1m
+      refreshInterval: 1s
   serverConnector:
     addresses:
       - 127.0.0.1:8091
@@ -17,11 +17,11 @@ global:
   statReporter:
     #描述: 是否启用上报
     enable: true
-    plugin:
-      pushgatewayConfig:
-        #描述: 上报给prometheus pushgateway的任务名称
-        jobName: "defaultJob"
-        #描述: pushgateway的服务名称
-        serviceName: "polaris.monitor"
-        #描述: 上报给pushgateway的时间间隔
-        pushInterval: 1
+#    plugin:
+#      pushgatewayConfig:
+#        #描述: 上报给prometheus pushgateway的任务名称
+#        jobName: "defaultJob"
+#        #描述: pushgateway的服务名称
+#        serviceName: "polaris.monitor"
+#        #描述: 上报给pushgateway的时间间隔
+#        pushInterval: 1
