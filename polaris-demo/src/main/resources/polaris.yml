@@ -17,11 +17,11 @@ global:
   statReporter:
     #描述: 是否启用上报
     enable: true
-#    plugin:
-#      pushgatewayConfig:
-#        #描述: 上报给prometheus pushgateway的任务名称
-#        jobName: "defaultJob"
-#        #描述: pushgateway的服务名称
-#        serviceName: "polaris.monitor"
-#        #描述: 上报给pushgateway的时间间隔
-#        pushInterval: 10
+    plugin:
+      pushgatewayConfig:
+        #描述: 上报给prometheus pushgateway的任务名称
+        jobName: "defaultJob"
+        #描述: pushgateway的服务名称
+        serviceName: "polaris.monitor"
+        #描述: 上报给pushgateway的时间间隔
+        pushInterval: 1
